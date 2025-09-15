@@ -49,7 +49,7 @@ docker compose build
 docker compose up -d
 ```
 
-You may sometimes need to rebuild the containers using `docker compose build`, for example if the Dockerfile or Python code has changed.
+You may sometimes need to rebuild the containers using `docker compose build`, for example, if the Dockerfile or Python code has changed.
 
 ## ripe-updater
 
