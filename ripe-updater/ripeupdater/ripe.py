@@ -25,7 +25,7 @@ STATUS_INET6NUM = 'ASSIGNED'
 # Which headers must be used by each query to RIPE
 RIPE_HEADERS = {'Content-Type': 'application/json',
                 'Accept': 'application/json; charset=utf-8'}
-RIPE_PARAMS = {'password': RIPE_MNT_PASSWORD}
+RIPE_PARAMS = {}
 
 # The main templates file
 TEMPLATES = 'templates.json'
