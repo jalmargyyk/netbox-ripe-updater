@@ -51,6 +51,19 @@ docker compose up -d
 
 You may sometimes need to rebuild the containers using `docker compose build`, for example, if the Dockerfile or Python code has changed.
 
+### Updating RIPE API Keys
+
+RIPE imposes a maximum of 12 months TTL on API keys, so you will need to update them periodically. To do this, update the `RIPE_API_USER` and `RIPE_API_PASS` variables in the `.env.updater` file, then restart the containers:
+
+```bash
+docker compose down
+docker compose up -d
+```
+
+#### API Key Update Script
+
+A script is provided to help update the RIPE API key, it can be found at: [./update-ripe-key.sh](./update-ripe-key.sh). It will make a backup, update the `.env.updater` file with the new key and restart the containers.
+
 ## ripe-updater
 
 The ripe-updater can be found at: [./ripe-updater](./ripe-updater)
