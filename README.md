@@ -63,7 +63,7 @@ Most of the README is still applicable, with some defaults being changed to matc
 * Backups are enabled by default to a local Docker instance of Minio. Credentials are hard coded, but the Minio container is not bound to the host, so it's not accessible from the outside world
 * Minor tweaks and fixes
 * The `_TEST_` environment variables are not used, testing can be achieved by changing `RIPE_TEMPLATE_DIR`
-* The ISO Alpha 2 country code is fetched from the regions slug in Netbox, ie `gb` for the UK.
+* The ISO Alpha 2 country code is fetched from the region's slug in Netbox, ie `gb` for the UK.
 * Added `INCLUDE_DESCR` & `INCLUDE_ORG` to the configuration, to allow for the exclusion of `descr` and `org` fields in the INETNUM objects (defaulted to include them).
 * Support for RIPE API key authentication
 
