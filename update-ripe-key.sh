@@ -27,3 +27,7 @@ fi
 
 docker compose down
 docker compose up -d
+
+echo "-------------------------------------------------------------"
+echo "RIPE API credentials updated and Docker containers restarted."
+echo "-------------------------------------------------------------"
