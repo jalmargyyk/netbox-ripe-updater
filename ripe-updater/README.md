@@ -43,7 +43,8 @@ Configuration is set via environment variables, but you can also edit `ripeupdat
 | NETBOX_TOKEN         | string             | -                          | netbox token, which can read prefixes, aggregates, regions and sites                      |
 | DEFAULT_COUNTRY      | ISO3166-II country | -                          | default country if none could be determined, e.g. DE or NL                                |
 | TEMPLATES_DIR        | path               | /opt/ripeupdater/templates | location of templates                                                                     |
-| RIPE_MNT_PASSWORD    | string             | -                          | ripe maintainer password with write permissions to your INET(6)NUM objects                |
+| RIPE_API_USER        | string             | -                          | RIPE API username write permissions to your INET(6)NUM objects                            |
+| RIPE_API_PASS        | string             | -                          | RIPE API password write permissions to your INET(6)NUM objects                            |
 | RIPE_DB              | RIPE/TEST          | TEST                       | which ripe-db to use                                                                      |
 | SMALLEST_PREFIX_V4   | 0-32               | 31                         | prefix length bigger than this limit will not be handled                                  |
 | SMALLEST_PREFIX_V6   | 0-128              | 127                        | prefix length bigger than this limit will not be handled                                  |
@@ -140,7 +141,7 @@ Templates are devided into three components.
 If you have enabled and configured a S3 backup storage, you can browse the json representation of deleted or overwritten objects at `http(s)://your-ripe-updater-host/backups`.
 To restore a backup manually, you can post the json file to the RIPE database:
 ```
-curl -X POST -H 'Content-Type: application/json' --data @prefix.json 'https://rest.db.ripe.net/ripe/inetnum?password=RIPE_MNT_PASSWORD'
+curl --user "RIPE_API_USER:RIPE_API_PASS" -X POST -H 'Content-Type: application/json' --data @prefix.json 'https://rest.db.ripe.net/ripe/inetnum'
 ```
 
 ## Development

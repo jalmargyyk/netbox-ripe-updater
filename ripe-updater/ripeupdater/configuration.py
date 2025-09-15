@@ -80,11 +80,17 @@ DEFAULT_COUNTRY = getenv('DEFAULT_COUNTRY')
 # default: /opt/ripeupdater/templates
 TEMPLATES_DIR = getenv('TEMPLATES_DIR', '/opt/ripeupdater/templates')
 
-# RIPE_MNT_PASSWORD
-# ripe maintainer password with write permissions to your INET(6)NUM objects
+# RIPE_API_USER
+# API username with write permissions to your INET(6)NUM objects
 # values: string
 # default: -
-RIPE_MNT_PASSWORD = getenv('RIPE_MNT_PASSWORD')
+RIPE_API_USER = getenv('RIPE_API_USER')
+
+# RIPE_API_PASS
+# API password with write permissions to your INET(6)NUM objects
+# values: string
+# default: -
+RIPE_API_PASS = getenv('RIPE_API_PASS')
 
 # RIPE_DB
 # which ripe-db to use
