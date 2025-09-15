@@ -40,10 +40,22 @@ docker compose up # -d flag to daemonize
 
 ### Updating
 
-To update the containers, pull the latest changes and restart the containers:
+### Updating
+
+To update the containers, pull the desired changes and restart the containers:
 
 ```bash
+# To get the latest version on the current branch:
 git pull
+
+# Or, to use a specific release version:
+git fetch --tags
+git checkout <tag_name>
+```
+
+Then restart the containers:
+
+```bash
 docker compose down
 docker compose build
 docker compose up -d
