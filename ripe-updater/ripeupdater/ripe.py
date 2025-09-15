@@ -4,6 +4,7 @@ import os
 
 import requests
 import json
+from requests.auth import HTTPBasicAuth
 
 from difflib import ndiff
 from ipaddress import (ip_network, ip_address, summarize_address_range)
@@ -25,7 +26,6 @@ STATUS_INET6NUM = 'ASSIGNED'
 # Which headers must be used by each query to RIPE
 RIPE_HEADERS = {'Content-Type': 'application/json',
                 'Accept': 'application/json; charset=utf-8'}
-RIPE_PARAMS = {} # TODO remove?
 
 # The main templates file
 TEMPLATES = 'templates.json'
@@ -267,7 +267,7 @@ class RipeObjectManager():
     def post_object(self, new_object):
         # Create object
         self.logger.info(f'CREATE {self.url}')
-        request = requests.post(self.url, json=new_object, headers=RIPE_HEADERS, params=RIPE_PARAMS)
+        request = requests.post(self.url, json=new_object, headers=RIPE_HEADERS, auth=HTTPBasicAuth(RIPE_API_USER, RIPE_API_PASS))
 
         ripe_object, ripe_errors = self.handle_request(request)
 
@@ -289,7 +289,7 @@ class RipeObjectManager():
                     self.delete_object()
 
                     self.prefix = cache_prefix
-                    post = requests.post(self.url, json=new_object, headers=RIPE_HEADERS, params=RIPE_PARAMS)
+                    post = requests.post(self.url, json=new_object, headers=RIPE_HEADERS, auth=HTTPBasicAuth(RIPE_API_USER, RIPE_API_PASS))
                     ripe_object, ripe_errors = self.handle_request(post)
 
                     if post.ok:
@@ -314,7 +314,7 @@ class RipeObjectManager():
         # Update object
         self.logger.info(f'CREATE {self.url}')
         request = requests.put(f'{self.url}/{self.prefix if is_v6(self.prefix) else format_cidr(self.prefix)}',
-                               json=new_object, headers=RIPE_HEADERS, params=RIPE_PARAMS)
+                               json=new_object, headers=RIPE_HEADERS, auth=HTTPBasicAuth(RIPE_API_USER, RIPE_API_PASS))
 
         ripe_object, ripe_errors = self.handle_request(request)
 
@@ -350,7 +350,7 @@ class RipeObjectManager():
         delete object from RIPE DB
         """
         self.logger.info(f'DELETE {self.url}')
-        request = requests.delete(f'{self.url}/{self.prefix}', headers=RIPE_HEADERS, params=RIPE_PARAMS)
+        request = requests.delete(f'{self.url}/{self.prefix}', headers=RIPE_HEADERS, auth=HTTPBasicAuth(RIPE_API_USER, RIPE_API_PASS))
 
         ripe_object, ripe_errors = self.handle_request(request)
 
