@@ -46,7 +46,7 @@ This project follows [Semantic Versioning](https://semver.org/). Breaking change
 
 Refer to the GitHub releases for changelog information.
 
-### Updating
+## Updating
 
 To update the containers, pull the desired changes and restart the containers:
 
