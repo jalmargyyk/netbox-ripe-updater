@@ -38,7 +38,13 @@ After configuration and templates, start the containers:
 docker compose up # -d flag to daemonize
 ```
 
-### Updating
+### Versioning
+
+This project follows [Semantic Versioning](https://semver.org/).
+
+### Changelog
+
+Refer to the GitHub releases for changelog information.
 
 ### Updating
 
