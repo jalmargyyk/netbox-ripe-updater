@@ -15,3 +15,4 @@ docker-compose.override.yml
 !/minio/data/.gitkeep
 /ripe-templates/custom/*
 !/ripe-templates/custom/.gitkeep
+/.env.updater.bak.*
