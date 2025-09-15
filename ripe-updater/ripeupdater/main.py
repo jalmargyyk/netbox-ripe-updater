@@ -67,10 +67,10 @@ def update():
     if the incoming webhook is prefix.
     """
     if request.headers.get('Authorisation') != UPDATE_TOKEN:
-        logger.error('token missmatch')
+        logger.error('token mismatch')
         abort(401)
 
-    logger.info('Update route is runnning and waiting to catch prefixes...')
+    logger.info('Update route is running and waiting to catch prefixes...')
 
     # Content-Type: application/json
     webhook = request.json

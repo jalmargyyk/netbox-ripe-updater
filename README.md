@@ -38,18 +38,49 @@ After configuration and templates, start the containers:
 docker compose up # -d flag to daemonize
 ```
 
-### Updating
+##  Versioning
 
-To update the containers, pull the latest changes and restart the containers:
+This project follows [Semantic Versioning](https://semver.org/). Breaking changes will be indicated by a major version bump.
+
+### Changelog
+
+Refer to the GitHub releases for changelog information.
+
+## Updating
+
+To update the containers, pull the desired changes and restart the containers:
 
 ```bash
+# To get the latest version on the current branch:
 git pull
+
+# Or, to use a specific release version:
+git fetch --tags
+git checkout <tag_name>
+```
+
+Then restart the containers:
+
+```bash
 docker compose down
 docker compose build
 docker compose up -d
 ```
 
-You may sometimes need to rebuild the containers using `docker compose build`, for example if the Dockerfile or Python code has changed.
+You may sometimes need to rebuild the containers using `docker compose build`, for example, if the Dockerfile or Python code has changed.
+
+### Updating RIPE API Keys
+
+RIPE imposes a maximum of 12 months TTL on API keys, so you will need to update them periodically. To do this, update the `RIPE_API_USER` and `RIPE_API_PASS` variables in the `.env.updater` file, then restart the containers:
+
+```bash
+docker compose down
+docker compose up -d
+```
+
+#### API Key Update Script
+
+A script is provided to help update the RIPE API key, it can be found at: [./update-ripe-key.sh](./update-ripe-key.sh). It will make a backup, update the `.env.updater` file with the new key and restart the containers.
 
 ## ripe-updater
 
@@ -63,8 +94,9 @@ Most of the README is still applicable, with some defaults being changed to matc
 * Backups are enabled by default to a local Docker instance of Minio. Credentials are hard coded, but the Minio container is not bound to the host, so it's not accessible from the outside world
 * Minor tweaks and fixes
 * The `_TEST_` environment variables are not used, testing can be achieved by changing `RIPE_TEMPLATE_DIR`
-* The ISO Alpha 2 country code is fetched from the regions slug in Netbox, ie `gb` for the UK.
+* The ISO Alpha 2 country code is fetched from the region's slug in Netbox, ie `gb` for the UK.
 * Added `INCLUDE_DESCR` & `INCLUDE_ORG` to the configuration, to allow for the exclusion of `descr` and `org` fields in the INETNUM objects (defaulted to include them).
+* Support for RIPE API key authentication
 
 ## Tips
 
