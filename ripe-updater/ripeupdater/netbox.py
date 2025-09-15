@@ -83,7 +83,7 @@ class FetchData:
 
 class ObjectBuilder:
     """
-    This class describs methodes to return catchable data from Netbox webhook
+    This class describes methods to return catchable data from Netbox webhook
     """
     def __init__(self, webhook):
         self.logger = LogManager().logger
