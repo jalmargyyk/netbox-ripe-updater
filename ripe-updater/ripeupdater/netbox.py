@@ -190,7 +190,10 @@ class ObjectBuilder:
         data = self.webhook
 
         try:
-            site_slug = data['data']['site']['slug']
+            if data['data']['scope_type'] != 'dcim.site':
+                raise TypeError("Scope type is not 'dcim.site'")
+
+            site_slug = data['data']['scope']['slug']
             country = self.country_netbox(site_slug)
         except TypeError:
             default_country = DEFAULT_COUNTRY.upper()
